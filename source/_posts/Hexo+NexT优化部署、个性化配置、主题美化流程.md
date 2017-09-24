@@ -70,7 +70,7 @@ deploy:
 
 ## 【源代码托管】
 
-源代码用于生成静态页面，一直放在本地的话，用其他电脑就不方便修改了。所以可以源代码托管到 GitHub 上。网上将源代码托管到博客的 Repository 的新建分支中会出现主题文件夹无法同步的问题。这里采用新建 Repository 的方法实现源代码托管。
+源代码用于生成静态页面，一直放在本地的话，用其他电脑就不方便修改了。所以可以源代码托管到 GitHub 上。
 
 ### 上传源代码到 GitHub
 
@@ -86,6 +86,10 @@ public/
 .deploy*/
 ```
 
+**重要**: 删除 themes/next 下的隐藏文件夹 .git，否则会出现无法上传 next 主题的问题！
+
+p.s. 为了保持与主题作者更新的同步，有人建议使用 submodule 或 subtree 的[方法](http://luyi13.github.io/2016/03/12/hexo-git/)，但我觉得，主题一般配好就很少改动了，直接把现在稳定的版本上传就好，将来主题作者有重大更新，我们重新下载下来，把我们改动过的文件替换过去就好了。一般改动的文件有：layout，scripts，source，_config.yml。
+
 GitHub 上新建 hexo_blog 仓库，复制 Clone or download 下的在线地址。
 
 ```
@@ -98,16 +102,21 @@ git push -u origin master  # 推送更新到 git 上
 
 ### 下载源代码到另一台电脑
 
-配置好 Git，SSH，初始化 Hexo 环境后，新建博客的本地文件夹：
+安装好 Git，Node.js 后，配置好 Git，SSH：
 
 ```
-git init  # 将目录添加到版本控制系统中
-git remote add origin <server>  # 同上
-git fetch --all  # 将 git 上所有文件拉取到本地
-git reset --hard origin/master  # 强制将本地内容指向刚刚同步 git 云端内容
+git clone <server>  # 直接下载托管的源文件
 ```
 
-reset 对所拉取的文件不做任何处理，此处不用 pull 是因为本地尚有许多文件，使用 pull 会有一些版本冲突，解决起来也麻烦，而本地的文件都是初始化生成的文件，较拉取的库里面的文件而言基本无用，所以直接丢弃。
+### 上传更新源码
+
+当在本地更新文章或设置后，需要 `hexo g -d` 更新静态网页，然后上传更新的源码：
+
+```
+git add .
+git commit -m 'update'
+git push
+```
 
 ### 从 GitHub 仓库中更新源代码
 
@@ -126,9 +135,8 @@ git pull  # 更新源代码
 ### 域名解析
 
 1. 进入工作台，点击域名，然后解析。
-
-2. 第一次可能需要填写个人信息，填完了，点击上面的域名解析 -> 解析设置 -> 添加解析，记录类型选 A 或 CNAME， A 记录的记录值就是 ip 地址， GitHub 提供了两个 IP 地址， 192.30.252.153 和 192.30.252.154，随便填一个就行，解析记录设置两个 www 和不填，线路就默认就行了，CNAME 记录值填你的 Coding 的博客网址。
-3. 如果选择 A 记录，就要在网站根目录新建 CNAME 文件，里面填写注册的域名，之后修改站点配置文件，把站点地址更新成新的绑定的域名即可。
+2. 第一次可能需要填写个人信息，填完了，点击上面的域名解析 -> 解析设置 -> 添加解析，记录类型选 A ，A 记录的记录值就是 ip 地址， GitHub 提供了两个 IP 地址， 192.30.252.153 和 192.30.252.154，随便填一个就行，解析记录设置为www和@，线路就默认就行了
+3. 在 `hexo_blog/source` 文件夹里新建 CNAME 文件，里面填写注册的域名。
 
 ------
 
@@ -215,7 +223,7 @@ deploy:
 
 ## 【个性化配置】
 - 参考 Hexo 官网配置说明文档：[Hexo 文档](https://hexo.io/zh-cn/docs/)：主要是【站点配置文件】
- `hexo_blog\_config.yml `的参数设置。
+   `hexo_blog\_config.yml `的参数设置。
 
 - 参考 NexT 官网配置说明文档：[NexT 主题配置](http://theme-next.iissnan.com/theme-settings.html#blogroll)：主要是【主题配置文件】`hexo_blog\themes\next\_config.yml` 的参数设置。
 
