@@ -1,5 +1,5 @@
 ---
-title: AndrewNg的DeepLearniing课程知识整理(1)
+title: AndrewNg的DeepLearning课程知识整理(1)
 tags:
   - Andrew Ng
   - Deep Learning
@@ -8,8 +8,223 @@ categories:
   - Deep Learning
 ---
 
-本系列的目标是将 Andrew Ng 的Deep Learning 课程整体梳理一遍，读薄课程中的基础知识和关键概念，便于回顾。这个系列一共有五门课程，本文是本系列的第一课：Neural Network  and Deep Learning
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+本系列的目标是将 Andrew Ng 的 Deep Learning 课程整体梳理一遍，读薄课程中的基础知识和关键概念，便于回顾。文章内容大部分来自我的手写笔记，中英文混杂还请见谅。这个系列一共有五门课程，本文是本系列的第一课：**Neural Network and Deep Learning**
 
 <!--more-->
 
-本系列的目标是将 Andrew Ng 的Deep Learning 课程整体梳理一遍，读薄课程中的基础知识和关键概念，便于回顾。这个系列一共有五门课程，本文是本系列的第一课：Neural Network  and Deep Learning
+大家好，我是 Day。听过很多道理，却依然过不好这一生。看过很多书和视频，却与进阶知识眉来眼去不敢向前。前段时间读了一个非常好的个人博客，[小土刀](http://wdxtub.com/)，受益匪浅，他将看过的书都整理了下来，即所谓的"读薄"，沉淀下来总是最珍贵的。
+
+本系列的目标是将 Andrew Ng 的 Deep Learning 课程整体梳理一遍，读薄课程中的基础知识和关键概念，便于回顾。文章内容大部分来自我的手写笔记，中英文混杂还请见谅。这个系列一共有五门课程，本文是本系列的第一课：**Neural Network and Deep Learning**
+
+------
+
+### Week 1. Introducting to Deep Learning
+
+**Supervised Learning for Neural Network**:
+
+|      INPUTX)       |       OUTPUT(Y)        |     APPICATION      |    TYPE of NN     |
+| :----------------: | :--------------------: | :-----------------: | :---------------: |
+|   Home Features    |         Price          |     Real Estate     |        DNN        |
+|   Ad, user info.   |   Click on ad? (0/1)   | Online Advertising  |        DNN        |
+|       Image        |  Object(1,2,...,1000)  |    Photo Tagging    |        CNN        |
+|       Audio        |    Text Transcript     | Speech Recognition  |        RNN        |
+|      English       |        Chinese         | Machine Translating |        RNN        |
+| Image, Radar info. | Position of Other Cars | Autonomous Driving  | Custom, Hybrid NN |
+
+**Structured Data**: things that has a defined meaning, like price, age,...
+
+**Unstructured Data**: like pixel, aw audio, text,...
+
+深度学习逐渐热门的原因，一方面是因为计算机的计算性能的提高可以训练很大很深的网络。另一方面，大量的标签数据也让深度学习的表现越来越好。
+
+深度学习的发展就是一个 **Data + Computation + Algorithms** 的循环过程。
+
+------
+
+###  Week 2. Basic of Neural Network Programming
+
+#### The general framework
+
+**Components**: X + Model + Cost
+
+**Train**: 
+
+1. X -> X[#example, #feature]
+2. Initialize the Model's parameters and hyperparameters
+3. Optimize the Cost based on X
+4. Choose the best Model with particular parameters and hyperparameters
+
+**Test**: 
+
+1. Pre-process the test sets X
+2. Model(X, parameters)
+
+#### Logistic Regression:
+
+Given $X=\lbrace(x^{(1)},y^{(1)}), (x^{(2)},y^{(2)}),...,(x^{(m)},y^{(m)})\rbrace$, 
+
+$\hat{y}^{(i)}=h_{\theta}(x)=\sigma(w^Tx^{i}+b)$, where $\sigma(z^{(i)})=\cfrac{1}{1+e^{-z^{(i)}}}$,
+
+want $\hat{y}^{(i)} \approx y^{(i)}$
+
+**Cost Function**:
+
+1. $L(\hat{y}^{(i)},y^{(i)})=\cfrac{1}{2}(\hat{y}^{(i)}-y^{(i)})^2$, non-convex
+2. $L(\hat{y}^{(i)},y^{(i)})=-(y^{(i)}\log(\hat{y}^{(i)}))+(1-y^{(i)})\log(1-\hat{y}^{(i)})$, convex is better √
+
+So, $J(w,b)=\cfrac{1}{m}\sum^m_{i=1}L(\hat{y}^{(i)},y^{(i)})$
+
+$=-\cfrac{1}{m}\sum^m_{i=1}[-(y^{(i)}\log(\hat{y}^{(i)}))+(1-y^{(i)})\log(1-\hat{y}^{(i)})]$
+
+**Gradient Descent**:
+
+Want to find $w, b$ that minimize $J(w, b)$
+
+Repeat till convergence {
+
+​	$w:=w-\alpha\cfrac{dJ(w,b)}{dw}$
+
+​	$b:=b-\alpha\cfrac{dJ(w,b)}{db}$
+
+}
+
+**Logistic Regression with Gradient Descent**:
+
+```
+# 伪代码
+J = 0; dw1 = 0; dw2 = 0; db = 0
+W = [w1, w2]; b = 0
+for i = 1 to m:
+	z[i] = W.T*x[i] + b
+	a[i] = sigma(z[i])
+	J += -[y[i]*log(a[i]) + (1-y[i])*log(1-a[i])]
+	dz[i] = a[i] - y[i]
+	dw1 += x[i][1]*dz[i]
+	dw2 += x[i][2]*dz[i]
+	db += dz[i]
+J /= m; dw1 /= m; dw2 /= m; db /= m
+w1 := w1 - alpha*dw1
+w2 := w2 - alpha*dw2
+b := b - alpha*db
+
+# 向量化
+Z = W.T*X + b  # b在python代码中会broadcasting
+A = sigma(Z)
+dZ = A - Y
+dW = (1/m)*X*dZ.T
+db = (1/m)*sum(dZ)
+W := W - alpha*dW
+b := b - alpha*db
+
+# "Whenever possible, avoid explicit for-loops."
+```
+
+------
+
+###  Week 3. One Hidden Layer Neural Network
+
+#### Chain Rule
+
+用链式法则进行求导运算，比如两层神经网络，隐含层只有一个节点，第一层的权重W[1]第一个输入特征的权重导数：
+
+ $dW^{[1]}_{1}=\cfrac{dL(a^{[2]},y)}{da^{[2]}}\cfrac{da^{[2]}}{dz^{[2]}}\cfrac{dz^{[2]}}{da^{[1]}}\cfrac{da^{[1]}}{dz^{[1]}}\cfrac{dz^{[1]}}{dx^{[1]}}$
+
+#### Activation Function
+
+**Sigmoid**: $g(z) = \cfrac{1}{1+e^{-z}}$$，$$g'(z)=g(z)(1-g(z))$
+
+**Tanh**: $g(z) = \cfrac{e^z-e^{-z}}{e^z+e^{-z}}$, $g'(z)=1-(tanh(z))^2$
+
+Sigmoid 激活函数和 Tanh 激活函数共同的问题是：当 z 过大或过小时，g'(z) 将趋向于 0，这会让梯度下降算法失效。
+
+**ReLU**: $g(z)=max(0,z)$
+
+**Leaky ReLU**: $g(z)=max(0.01z,z)$ 
+
+#### Folmulas for Computing Derivatives
+
+**Forward Propagation**:
+
+```
+Z[1] = W[1]*X + b[1]
+A[1] = g[1](Z[1])
+Z[2] = W[2]A[1] + b[2]
+A[2] = g[2](Z[2]) = sigma(Z[2])
+```
+
+**Back Propagation**:
+
+```
+dZ[2] = A[2] - Y
+dW[2] = (1/m)*dZ[2]*A[1].T
+db[2] = (1/m)*np.sum(dZ[2], axis=1, keepdims=True)
+dZ[1] = W[2].T*dZ[2].*g'[1](Z[1])
+dW[1] = (1/m)*dZ[1]*X.T
+db[1] = (1/m)*np.sum(dZ[1], axis=1, keepdims=True)
+```
+
+#### Random Initialization
+
+**为什么不能初始化为0或其他相同的值？**
+
+如果权重相同，那么下一层的各个节点单元的地位就同等重要，这种对称性将一直延续，不管迭代多少次都会存在。
+
+**随机初始化**:
+
+```
+W[l] = np.random.randn((2,2))*0.01  # 权重尽量小一点，这样激活函数的导数就大一点（ReLU除外）
+b[l] = zp.zeros((2,1))
+```
+
+------
+
+###  Week 4. Deep Neural Networks
+
+#### FP and BP for N Layer
+
+```
+## FP for layer l
+# Input A[l-1]
+# Output A[l], cache(Z[l])  # cache是为了方便获得W[l], b[l]
+Z[l] = W[l]*A[l-1] + b[l]
+A[l] = g[l](Z[l])
+
+## BP for layer l
+# Input dA[l]
+# Output dA[l-1], dW[l], db[l]
+dZ[l] = dA[l].*g'[l](Z[l])
+dW[l] = (1/m)*dZ[l]*A[l-1].T
+db[l] = (1/m)*np/sum(dZ[l], axis=1, leepdims=True)
+dA[l-1] = W[l].TdZ[l]
+```
+
+#### Why Deep Representation?
+
+1. Simple -> Complex
+2. Circuit Theory
+
+#### Parameters Vs. Hyperparameters
+
+**Parameters**: **W[l]**, **b[l]**, l = 1,2,3...n
+
+**Hyperparameters**:
+
+- Learning Rate **alpha**
+- num of iterations **epochs**
+- num of hidden layer **L**
+- num of hidden units, **n[1]**, **n[2]**,...
+- choice of activation function **g[1]**, **g[2]**,...
+- momentum **beta**
+- mini-batch **bacth_size**
+- regularization **lambda**
+- ...
