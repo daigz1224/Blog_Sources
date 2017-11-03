@@ -25,7 +25,7 @@ toc: true
 
 Ctrl+Shift+T 打开命令行
 
-```
+```shell
 sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak  # 备份软件源配置文件
 sudo gedit /etc/apt/sources.list
 # 复制粘贴使用帮助中对应 Ubuntu 版本的镜像源。
@@ -38,7 +38,7 @@ Tip：这里说一下 apt 与 apt-get 的区别。简单来说，**apt = apt-get
 
 由于 Chromium 在官方源中直接存在，不需要添加 ppa 源，直接 install 就好。
 
-```
+```shell
 sudo apt install chromium-browser
 sudo apt remove firefox  # 卸载 FireFox，视自己喜好而定。
 chromium-browser  # 打开 Chromium 浏览器
@@ -48,7 +48,7 @@ chromium-browser  # 打开 Chromium 浏览器
 
 ## 系统清理
 
-```
+```shell
 sudo apt upgrade
 sudo apt remove libreoffice-common  # 卸载 LibreOffice
 sudo apt remove unity-webapps-common  # 删除 Amazon 链接
@@ -63,7 +63,7 @@ sudo apt remove onboard deja-dup
 
 ## 安装新主题
 
-```
+```shell
 sudo apt install unity-tweak-tool  # Unity 图形化管理工具
 sudo add-apt-repository ppa:noobslab/themes  # 添加主题 ppa 源
 sudo add-apt-repository ppa:noobslab/icons  # 添加图标 ppa 源
@@ -75,7 +75,7 @@ unity-tweak-tool  # 打开图形化管理工具，在 Theme 和 Icons 里应用�
 
 ## 美化终端
 
-```
+```shell
 sudo apt install zsh  # 安装 zsh
 sudo apt install git  # 安装 Git 工具
 # 下载 GitHub 上的 oh-my-zsh 脚本
@@ -96,7 +96,7 @@ sudo gedit /etc/passwd  # 修改最后一行，将 sh 改为 zsh
 
 打开系统设置，找到 Language Support。Ubuntu 是英文版安装的话这里需要先安装下中文语言，在 Install/Remove Languages 找到 Chinese(simplified)，右边打勾，点击 Apply。
 
-```
+```shell
 cd Downloads
 sudo dpkg -i sogoupinyin_***.deb  # 使用 dpkg 安装
 # 会遇到错误，是缺少依赖的问题，使用下面命令自动安装缺少的依赖
@@ -112,7 +112,7 @@ sudo dpkg -i sogoupinyin_***.deb  # 再次使用 dpkg 安装
 
 搜索 "wps linux"，在 WPS 官网下载对应版本的 deb 文件。也可以复制目标 deb 的链接地址，打开终端到 Downloads 目录下使用 wget 命令下载。
 
-```
+```shell
 cd Downloads
 sudo dpkg -i wps-office_***.deb
 ```
@@ -121,7 +121,7 @@ sudo dpkg -i wps-office_***.deb
 
 ### 安装 Atom 编辑器
 
-```
+```shell
 sudo add-apt-repository ppa:webupd8team/atom
 sudo apt update
 sudo apt install atom

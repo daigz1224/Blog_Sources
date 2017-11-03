@@ -54,7 +54,7 @@ GitHub 是基于 Git 技术的社交编程及代码托管网站。你可以用�
 
 - Mac / Linux：使用 curl 或 wget 下载安装
 
-```
+```shell
 $ curl https://raw.github.com/creationix/nvm/master/install.sh | sh
 or
 $ wget -qO- https://raw.github.com/creationix/nvm/master/install.sh | sh
@@ -70,7 +70,7 @@ $ nvm install stable
 
 - 先创建自己博客文件夹，比如 `D:/hexo`
 
-```
+```shell
 $ cd your-hexo-site # 切换到你的本地博客文件夹
 # Windows 用户直接在该文件夹下右键打开 Git Bash Here
 $ npm install -g hexo-cli
@@ -79,14 +79,14 @@ $ npm install -g hexo-cli
 
 ### 初始化自己的博客静态网站
 
-```
+```shell
 $ hexo init  # 生成一些必要的初始文件
 $ npm install  # 安装依赖包
 $ npm install hexo-deployer-git --save  # 为了可以将网站部署到 GitHub 上
 $ hexo g  # 生成静态页面
 $ hexo s  # 打开测试服务器
 ```
-- 浏览器打开网址：http://localhost:4000/，这就是最初的样子。
+- 浏览器打开网址：localhost:4000，就是最初的样子。
 
 -----
 
@@ -95,14 +95,14 @@ $ hexo s  # 打开测试服务器
 - 在 [GitHub 官网](https://github.com/) 注册一个账号，记得注册邮箱和用户名，建议用户名和邮箱的用户名一样，建议此时学习一些 Git 和 GitHub 的基本知识。
 - 本地打开命令行或 Git Bash，配置本地需要连接的账号：
 
-```
+```powershell
 $ git config --global user.name "your_name"  # 设置用户名
 $ git config --global user.email "your_email@youremail.com"  # 设置邮箱
 ```
 
 - 配置 SSH，建立本地与 GitHub 账号之间的连接密钥：
 
-```
+```shell
 $ ssh-keygen -t rsa -C your_email@youremail.com
 ```
 
@@ -118,7 +118,7 @@ $ ssh-keygen -t rsa -C your_email@youremail.com
 
 ### 安装 NexT 主题
 
-```
+```shell
   $ cd your-hexo-site # 切换到你的本地博客文件夹
   $ git clone https://github.com/iissnan/hexo-theme-next themes/next
 ```
@@ -140,13 +140,13 @@ branch: master
 
 ### 部署到 GitHub
 
-```
+```shell
 $ hexo clean  # 删除原来的静态页面
 $ hexo g  # generate 生成新的静态页面
 $ hexo d  # deploy 将页面部署到 GitHub 上
 ```
 
-- 访问 https://{your_name}.github.io 就可以看到你的博客网站了！**一般部署之后需要等待一段时间博客网站才会刷新，如果你想一边配置一边看效果，可以再打开一个   Git Bash，输入`$ hexo s  # 打开本地测试服务器`，浏览器打开localhost:4000 即时查看变化。**
+- 访问 {your_name}.github.io 就可以看到你的博客网站了！**一般部署之后需要等待一段时间博客网站才会刷新，如果你想一边配置一边看效果，可以再打开一个   Git Bash，输入`$ hexo s  # 打开本地测试服务器`，浏览器打开localhost:4000 即时查看变化。**
 
 -----
 
@@ -159,12 +159,12 @@ $ hexo d  # deploy 将页面部署到 GitHub 上
 
 - 创建文章：
 
-`$ hexo new post <title>  # 在 `source\_posts` 下生成 post 布局的<title>.md 文档`
+`$ hexo new post <title> `在 `source\_posts` 下生成 post 布局的<title>.md 文档
 
 - 使用支持 Markdown 的编辑器打开写文章。
 - 文章写完后，执行：
 
-```
+```shell
 $ hexo clean  # 清理 public 文件夹
 $ hexo g  # generate 生成静态网页
 $ hexo d  # deploy 部署更新文章到 GitHub Pages

@@ -4,6 +4,9 @@ date: {{ date }}
 tags:
   - 
 categories:
+  -
+mathjax: false
+toc: false
 ---
 
 

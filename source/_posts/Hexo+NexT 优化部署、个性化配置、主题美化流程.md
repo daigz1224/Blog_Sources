@@ -28,7 +28,7 @@ toc: true
 
 ### 配置 SSH 与 Git：绑定个人电脑
 
-```
+```shell
 ssh-keygen -t rsa -C your_email@youremail.com  # 生成 SSH Key
 ```
 找到 `.ssh/id_rsa.pub` 文件，复制密钥，粘贴到 GitHub 和 Coding 中。
@@ -38,7 +38,7 @@ ssh-keygen -t rsa -C your_email@youremail.com  # 生成 SSH Key
 
 ### 验证是否配对以及配置账户
 
-```
+```shell
 ssh -T git@github.com  # 验证 GitHub
 ssh -T git@git.coding.net  # 验证 Coding
 git config --global user.name your name  # 绑定用户名
@@ -53,7 +53,7 @@ git config --global user.email your_email@youremail.com  # 绑定邮箱
 
 打开【站点配置文件】`hexo_blog\_config.yml`，在底部修改部署配置：
 
-```
+```shell
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
@@ -73,7 +73,7 @@ deploy:
 
 确认源代码下 .gitignore 内容：
 
-```
+```shell
 .DS_Store
 Thumbs.db
 db.json
@@ -89,7 +89,7 @@ p.s. 为了保持与主题作者更新的同步，有人建议使用 submodule �
 
 GitHub 上新建 hexo_blog 仓库，复制 Clone or download 下的在线地址。
 
-```
+```shell
 git init
 git remote add origin <server>  # hexo_blog 仓库的在线地址
 git add . #添加 blog 目录下所有文件，注意有个'.' ( .gitignore 里面声明的文件不在此内)
@@ -101,7 +101,7 @@ git push -u origin master  # 推送更新到 git 上
 
 安装好 Git，Node.js 后，配置好 Git，SSH：
 
-```
+```shell
 git clone <server>  # 直接下载托管的源文件
 ```
 
@@ -109,7 +109,7 @@ git clone <server>  # 直接下载托管的源文件
 
 当在本地更新文章或设置后，需要 `hexo g -d` 更新静态网页，然后上传更新的源码：
 
-```
+```shell
 git add .
 git commit -m 'update'
 git push
@@ -117,7 +117,7 @@ git push
 
 ### 从 GitHub 仓库中更新源代码
 
-```
+```shell
 git pull  # 更新源代码
 ```
 
@@ -149,7 +149,7 @@ git pull  # 更新源代码
 
 安装 Hexo 的 sitemap 网站地图生成插件:
 
-```
+```shell
 npm install hexo-generator-sitemap --save
 npm install hexo-generator-baidu-sitemap --save
 ```
@@ -170,8 +170,8 @@ baidusitemap:
 
 安装主动推送插件：
 
-```
-﻿npm install hexo-baidu-url-submit --save
+```shell
+npm install hexo-baidu-url-submit --save
 ```
 
 在根目录下，把以下内容配置到站点配置文件中：
@@ -232,7 +232,7 @@ deploy:
 
 修改 `themes\next\source\css\_common\components\sidebar\sidebar-author.styl`：
 
-```
+```scss
 .site-author-image {
   display: block;
   margin: 0 auto;
@@ -263,7 +263,7 @@ deploy:
 
 打开 `themes/next/source/css/_custom/custom.styl` 文件添加：
 
-```
+```scss
 .post {
   margin-top: 60px;
   margin-bottom: 60px;
@@ -277,7 +277,7 @@ deploy:
 
 打开 `/next/_config.yml`，修改 canvas_nest 参数：
 
-```
+```scss
 # Canvas-nest
 canvas_nest: true
 
@@ -308,7 +308,7 @@ favicon: /favicon.ico
 
 打开 `\themes\next\source\css\ _variables\base.styl` 文件，将 `$font-size-base` 改成 `16px`，如下所示：
 
-```
+```scss
 $font-size-base =16px
 ```
 
