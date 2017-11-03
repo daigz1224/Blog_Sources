@@ -81,6 +81,5 @@ theme: maupassant
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo:
-    github: git@github.com:daigz1224/daigz1224.github.io.git
-    branch: master
+  repository: https://github.com/daigz1224/daigz1224.github.io
+  branch: master
