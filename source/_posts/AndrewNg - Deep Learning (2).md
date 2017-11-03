@@ -1,30 +1,20 @@
 ---
-title: AndrewNg的DeepLearning课程知识整理(2)
+title: AndrewNg - Deep Learning (2)
 tags:
   - Andrew Ng
   - Deep Learning
 date: 2017-09-30 19:44:49
 categories:
   - Deep Learning
+toc: true
+mathjax: true
 ---
-
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
-});
-</script>
-
-<script type="text/javascript"
-   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
 
 本系列的目标是将 Andrew Ng 的 Deep Learning 课程整体梳理一遍，读薄课程中的基础知识和关键概念，便于回顾。文章内容大部分来自我的手写笔记，中英文混杂还请见谅。这个系列一共有五门课程，本文是本系列的第二课：**Improving Deep Neural Network: Hyperparameter tuning, Regularization, Optimization**
 
 <!--more-->
 
 大家好，我是 Day。听过很多道理，却依然过不好这一生。看过很多书和视频，却与进阶知识眉来眼去不敢向前。前段时间读了一个非常好的个人博客，[小土刀](http://wdxtub.com/)，受益匪浅，他将看过的书都整理了下来，即所谓的"读薄"，沉淀下来总是最珍贵的。
-
-本系列的目标是将 Andrew Ng 的 Deep Learning 课程整体梳理一遍，读薄课程中的基础知识和关键概念，便于回顾。文章内容大部分来自我的手写笔记，中英文混杂还请见谅。这个系列一共有五门课程，本文是本系列的第二课：**Improving Deep Neural Network: Hyperparameter tuning, Regularization, Optimization**
 
 ------
 
@@ -48,7 +38,7 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 
 **建议：**
 
-- 验证集要和训练集来自于同一个分布（Shuffle一下），可以使得机器学习算法变得更快；
+- 验证集要和训练集来自于同一个分布（Shuffle 一下），可以使得机器学习算法变得更快；
 - 如果不需要用无偏估计来评估模型的性能，则可以不需要测试集。
 
 #### Bias / Variance Tradeoff
@@ -76,22 +66,27 @@ The base error is quite small, e.g Human-level ≈ 0%
 
 #### Regularization
 
-**直观理解**：正则化因子 lambda 设置的足够大的情况下，为了使代价函数最小化，权重矩阵 W 就会被设置为接近于0的值。则相当于消除了很多神经元的影响，那么图中的大的神经网络就会变成一个较小的网络。实际上隐藏层的神经元依然存在，但是他们的影响变小了，便不会导致过拟合。
+**直观理解**：正则化因子 $\lambda$ 设置的足够大的情况下，为了使代价函数最小化，权重矩阵 $W$就会被设置为接近于 0 的值。则相当于消除了很多神经元的影响，那么图中的大的神经网络就会变成一个较小的网络。实际上隐藏层的神经元依然存在，但是他们的影响变小了，便不会导致过拟合。
 
-**L2 ** (=Weight Decay)
+**L2 ** (=Weight Decay):
 
-**Logistic Regression**:
+**In Logistic Regression**:
 
 $$J(w,b)=\cfrac{1}{m}\sum^m_{i=1}L(\hat{y}^{(i)},y^{(i)})+\cfrac{\lambda}{2m}||w||^2_2$$
 
-- L2 Regularization: $$\cfrac{\lambda}{2m}||w||^2_2=\cfrac{\lambda}{2m}\sum^{n_x}_{j=1}w^2_j=\cfrac{\lambda}{2m}w^Tw$$
-- L1 Regularization: $$\cfrac{\lambda}{2m}||w||_1=\cfrac{\lambda}{2m}\sum^{n_x}_{j=1}|w_j|$$
+- L2 Regularization:
 
-**Neural Network**:
+   $$\cfrac{\lambda}{2m}||w||^2\_2=\cfrac{\lambda}{2m}\sum^{n\_x}_{j=1}w^2\_j=\cfrac{\lambda}{2m}w^Tw$$
 
-$$J(w^{[1]},b^{[1]},...,w^{[L]},b^{[L]},)=\cfrac{1}{m}\sum^m_{i=1}L(\hat{y}^{(i)},y^{(i)})+\cfrac{\lambda}{2m}\sum^L_{l=1}||w^{l}||^2_F$$
+- L1 Regularization: 
 
-$$w.shape = (n^{[l]},n^{[l-1]})$$, F is "Frobenius norm"
+  $$\cfrac{\lambda}{2m}\mid\mid w\mid\mid\_1=\cfrac{\lambda}{2m}\sum^{n\_x}\_{j=1}\mid w\_j\mid$$
+
+**In Neural Network**:
+
+$$J(w^{[1]},b^{[1]},...,w^{[L]},b^{[L]},)=\cfrac{1}{m}\sum^m\_{i=1}L(\hat{y}^{(i)},y^{(i)})+\cfrac{\lambda}{2m}\sum^L\_{l=1}||w^{l}||^2\_F$$
+
+$w.shape = (n^{[l]},n^{[l-1]})$, $F$ is "Frobenius norm"
 
 **Weight Decay**:
 
@@ -99,11 +94,11 @@ $$dW^{[l]}=(from\,backprop)+\cfrac{\lambda}{m}W^{[l]}$$
 
 $$W^{[l]}:=W^{[l]}-\alpha dW^{[l]}=(1-\cfrac{\alpha\lambda}{m})W^{[l]}-\alpha(from\,backprop)$$
 
-$$Notes: (1-\cfrac{\alpha\lambda}{m})<1$$
+$Notes: (1-\cfrac{\alpha\lambda}{m})<1$
 
-**数学原理**：假设神经元中使用的激活函数为 $g(z) = tanh(z)$ 在加入正则化项后：当 $\lambda$ 增大，导致 $W^{[l]}$ 减小，$Z^{[l]}=W^{[l]}a^{[l-1]}+b^{[l]}$ 便会减小，当 z  处于数值较小的区域里，$tanh(z)$ 函数近似线性，所以每层的函数就近似线性函数，整个网络就成为一个简单的近似线性的网络，从而不会发生过拟合。
+**数学原理**：假设神经元中使用的激活函数为 $g(z) = tanh(z)$ 在加入正则化项后：当 $\lambda$ 增大，导致 $W^{[l]}$ 减小，$Z^{[l]}=W^{[l]}a^{[l-1]}+b^{[l]}$ 便会减小，当   处于$z$数值较小的区域里，$tanh(z)$ 函数近似线性，所以每层的函数就近似线性函数，整个网络就成为一个简单的近似线性的网络，从而不会发生过拟合。
 
-**Dropout** - "Inverted dropout"
+**Dropout** -"Inverted dropout"
 
 ```
 # layer L = 3, keep_prob = 0.8
@@ -112,13 +107,13 @@ a3 = np.multiply(a3, d3)
 a3 /= keep_prob  # 为了不影响Z[4] = W[4]*a[3]+b[4]的期望值
 ```
 
-**注意**：在测试阶段不要用dropout，因为那样会使得预测结果变得随机。
+**注意**：在测试阶段不要用 dropout，因为那样会使得预测结果变得随机。
 
-**直观理解**：通过 dropout，使得网络不会依赖于任何一个特征（可能会被丢弃），从而 shrink  the weights。
+**直观理解**：通过 dropout，使得网络不会依赖于任何一个特征（可能会被丢弃），从而 shrink the weights。
 
 **缺点**：使得 Cost function 不再能被明确的定义。
 
-**使用**：关闭dropout功能，即设置 keep_prob = 1.0；运行代码，确保 Cost Function 单调递减；再打开 dropout。
+**使用**：关闭 dropout 功能，即设置 keep_prob = 1.0；运行代码，确保 Cost Function 单调递减；再打开 dropout。
 
 **Data Augmentation**
 
@@ -144,7 +139,7 @@ $$x:=x-\mu,x=x/\sigma^2$$
 
 **减缓梯度爆炸或梯度消失**：
 
-当输入的 x 的维度较大时，我们希望每个 wi 都小一点，这样得到的和 z 也较小。
+当输入的 $x^{(i)}$ 的维度较大时，我们希望每个 $w$ 都小一点，这样得到的和 $z$ 也较小。
 
 ```
 # Xavier Initialization
@@ -153,24 +148,24 @@ WL = np.random.randn(WL.shape[0],WL.shape[1])* np.sqrt(1/n)
 # 激活函数使用 tanh 的话，使用 np.sqrt(1/n)
 ```
 
-这么做是因为，如果激活函数的输入 xi 近似设置成均值为0，标准方差1的情况，输出 z 也会调整到相似的范围内。虽然没有解决梯度消失和爆炸的问题，但其在一定程度上确实减缓了梯度消失和爆炸的速度。
+这么做是因为，如果激活函数的输入 $x^{(i)}$ 近似设置成均值为 0，标准方差 1 的情况，输出 $z$ 也会调整到相似的范围内。虽然没有解决梯度消失和爆炸的问题，但其在一定程度上确实减缓了梯度消失和爆炸的速度。
 
 #### Gradient Check
 
-使用双边误差的方法逼近导数，误差为 $O(\epsilon^2)$
+使用双边误差的方法逼近导数，误差为 $O(\epsilon^2)$，单边为$O(\epsilon)$
 
-因为我们的神经网络中含有大量的参数: W[1],b[1],⋯,W[L],b[L]，为了做梯度检验，需要将这些参数全部连接起来，reshape 成一个大的向量 θ 。同时对 dW[1],db[1],⋯,dW[L],db[L] 执行同样的操作。 
+因为我们的神经网络中含有大量的参数: $W[1], b[1], ⋯, W[L], b[L]$，为了做梯度检验，需要将这些参数全部连接起来，reshape 成一个大的向量 $\Theta$ 。同时对 $dW[1],db[1],⋯,dW[L],db[L]$ 执行同样的操作 $d\Theta$。 
 
-$$d\theta_{approx}[i]=\cfrac{J(\theta_1,...,\theta_i+\epsilon,...)-J(\theta_1,...,\theta_i-\epsilon,...)}{2\epsilon}$$
+$$d\Theta_{approx}[i]=\cfrac{J(\theta_1,...,\theta_i+\epsilon,...)-J(\theta_1,...,\theta_i-\epsilon,...)}{2\epsilon}$$
 
-由，$$\cfrac{||d\theta_{approx}−d\theta||_2}{||d\theta_{approx}||_2+||dθ\theta||_2}$$
+由，$\cfrac{||d\theta\_{approx}−d\theta||\_2}{||d\theta\_{approx}||\_2+||d\theta||\_2}$
 
-判断是否 $d\theta_{approx}≈d\theta$
+判断是否 $d\Theta_{approx}≈d\Theta$
 
 - 不要在训练过程中使用梯度检验，只在 debug 的时候使用，使用完毕关闭梯度检验的功能；
-- 如果算法的梯度检验出现了错误，要检查每一项，找出错误，也就是说要找出哪个$d\theta_{approx}[i]$与$d\theta$的值相差比较大；
+- 如果算法的梯度检验出现了错误，要检查每一项，找出错误，也就是说要找出哪个 $d\Theta_{approx}[i]​$ 与 $d\Theta​$ 的值相差比较大；
 - 不要忘记了正则化项；
-- 梯度检验不能与dropout同时使用。因为每次迭代的过程中，dropout会随机消除隐层单元的不同神经元，这时是难以计算dropout在梯度下降上的代价函数J；
+- 梯度检验不能与 dropout 同时使用。因为每次迭代的过程中，dropout 会随机消除隐层单元的不同神经元，这时是难以计算 dropout 在梯度下降上的代价函数 $J$；
 - 在随机初始化的时候运行梯度检验，或许在训练几次后再进行。
 
 ------
@@ -183,16 +178,18 @@ $$d\theta_{approx}[i]=\cfrac{J(\theta_1,...,\theta_i+\epsilon,...)-J(\theta_1,..
 - If mini-batch size = 1: Stochastic Gradient Descent
 - In-Between: fastest
   - Vectorization 
-  -  Make progress without processing the entire set.
-- If small training set (m≤2000): use BGD
+  - Make progress without processing the entire set.
+- If small training set (m≤2000): use Batch Gradient Descent
 - Typical mini-batch size: 64, 128, 256, 512
 - Make sure mini-batch fit in CPU / GPU memory
 
 #### Exponentially Weighted Averages
 
-$V_t=\beta V_{t-1}+(1-\beta)\theta_t$,此时 $V_t$ 相当于之前 $\cfrac{1}{1-\beta}$ 个数据的平均。
+$$V\_t=\beta V\_{t-1}+(1-\beta)\theta\_t$$
 
-Bias Correction: 因为冷启动的问题，所以可以用 $\cfrac{V_t}{1-\beta^t}=\cfrac{\beta V_t+(1-\beta)\theta_t}{1-\beta^t}$ 进行偏差修正。
+此时 $V_t$ 相当于之前 $\cfrac{1}{1-\beta}$ 个数据的平均。
+
+**Bias Correction**: 因为冷启动的问题，所以可以用 $\cfrac{V_t}{1-\beta^t}=\cfrac{\beta V_t+(1-\beta)\theta_t}{1-\beta^t}$ 进行偏差修正。
 
 #### Momentum
 
@@ -212,7 +209,7 @@ on iteration t:
 
 #### RMSprop
 
-控制 W, b 的梯度下降速度。
+控制 $W, b$ 的梯度下降速度。
 
 ```
 # Hyperparameters: alpha, beta
@@ -249,7 +246,7 @@ on iteration t:
 
 #### Learning Rate Decay
 
-$$\alpha=\cfrac{1}{1+decay_rate*epoch_num}*\alpha_0$$
+$$\alpha=\cfrac{1}{1+decay\_{rate}epoch\_{num}}\alpha\_0$$
 
 #### The Problem of Local Optima
 
@@ -264,22 +261,64 @@ $$\alpha=\cfrac{1}{1+decay_rate*epoch_num}*\alpha_0$$
 
 在一定范围内随机取参数，不要使用网格记录，要由粗到细。
 
-- alpha
-- beta(=0.9), num of hidden units, mini-batch size
+- $\alpha$
+- $\beta (=0.9)$, num of hidden units, mini-batch size
 - num of layers, learning rate decay
-- beta1(=0.9), beta2(=0.999), epsilon(=10^-8)
+- $\beta_1 (=0.9)$, $\beta_2 (=0.999)$, $\epsilon (=10^{-8})$
 
 #### Appropriate Scale to Pick
 
 不能线性取值，因为不同区段敏感度不同。
 
-如果要选 alpha = 0.001 ~ 0.1, 那么就随机在 -4 到 -1选一个r，则 alpha = 10^r。
+如果要选 $\alpha$ = 0.001 ~ 0.1, 那么就随机在 -4 到 -1选一个 $r$，则 $\alpha = 10^r$。
 
-如果要选 beta  = 0.9 ~ 0.999, 那么就转换为 1 - beta 的及进行选择。 
+如果要选 $\beta$  = 0.9 ~ 0.999, 那么就转换为 $1 - \beta$ 的及进行选择。 
 
-要用鱼子酱的模式去试，即 Training many models in parallel。
+要用鱼子酱（Caviar）模式去试，即 Training many models in parallel，而不是 Panda 模式，即 Baby-sitting one model。
 
 #### Batch Normalization
 
+Given some intermediate values in NN, like $Z^{[l](1)},Z^{[l](2)},...,Z^{[l](m)}$
+
+$$\mu=\cfrac{1}{m}\sum_iZ^{(i)}$$
+
+$$\sigma^2=\cfrac{1}{m}\sum_i(Z^{(i)}-\mu)^2$$
+
+$$Z^{(i)}_{norm}=\cfrac{Z^{(i)}-\mu}{\sqrt{\sigma^2+\epsilon}}$$
+
+$$\hat{Z}^{(i)}=\gamma Z^{(i)}_{norm}+\beta$$
+
+In this layer, Use $\hat{Z}^{(i)}$ instead of $Z^{(i)}$, then enter the activation function.
+
+```
+for t = 1,...,num of mini-batches:
+	compute FP on X{t},
+		In each hidden layer, use Batch Normalization to replace Z[l] with Z[l]_hat.
+	Use BP to compute dW[l], dbeta[l], dgamma[l].(no need for db[l])
+	Update parameters: 
+		W[l] := W[l] - alpha*dW[l]
+		beta[l] := beta[l] - alpha*dbeta[l]
+		gamma[l] := gamma[l] - alpha*dgamma[l]
+(can work with/without momentum/RMSprop/Adam)
+```
+
+Batch Normalization 使每层参数稍稍独立于其他层，这样后面的层对前面层的参数不那么敏感。
+
+**Batch Normalization as Regularization**:
+
+1. Each mini-batch is scaled by the mean/Variance.
+2. Add some noise to the value Z[l], similarly to dropout.
+3. This has a slight regularization effect.
+
+**Notes**:
+
+- 训练时，$\mu$ 和 $\sigma^2$是根据 mini-batch 来计算的。即通过64，128，...个样本的计算。
+- 测试时，需要逐一处理样本，所以需要估算。
+- 可以通过指数加权平均的方法估算，即 Exponetically Weighted Average (across mini-batch).
+
 #### Softmax Regression
+
+多分类任务，通过最后一层"激活函数"（Softmax Layer）来计算每个分类的概率。
+
+$$A^{[L][i]} = \cfrac{e^{Z^{[L][i]}}}{\sum_iZ^{[L]}}$$
 

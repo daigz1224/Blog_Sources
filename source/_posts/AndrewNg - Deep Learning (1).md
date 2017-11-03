@@ -1,30 +1,20 @@
 ---
-title: AndrewNg的DeepLearning课程知识整理(1)
+title: AndrewNg - Deep Learning (1)
 tags:
   - Andrew Ng
   - Deep Learning
 date: 2017-09-30 09:44:49
 categories:
   - Deep Learning
+mathjax: true
+toc: true
 ---
-
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
-});
-</script>
-
-<script type="text/javascript"
-   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
 
 本系列的目标是将 Andrew Ng 的 Deep Learning 课程整体梳理一遍，读薄课程中的基础知识和关键概念，便于回顾。文章内容大部分来自我的手写笔记，中英文混杂还请见谅。这个系列一共有五门课程，本文是本系列的第一课：**Neural Network and Deep Learning**
 
 <!--more-->
 
 大家好，我是 Day。听过很多道理，却依然过不好这一生。看过很多书和视频，却与进阶知识眉来眼去不敢向前。前段时间读了一个非常好的个人博客，[小土刀](http://wdxtub.com/)，受益匪浅，他将看过的书都整理了下来，即所谓的"读薄"，沉淀下来总是最珍贵的。
-
-本系列的目标是将 Andrew Ng 的 Deep Learning 课程整体梳理一遍，读薄课程中的基础知识和关键概念，便于回顾。文章内容大部分来自我的手写笔记，中英文混杂还请见谅。这个系列一共有五门课程，本文是本系列的第一课：**Neural Network and Deep Learning**
 
 ------
 
@@ -43,7 +33,7 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 
 **Structured Data**: things that has a defined meaning, like price, age,...
 
-**Unstructured Data**: like pixel, aw audio, text,...
+**Unstructured Data**: like pixel, raw audio, text,...
 
 深度学习逐渐热门的原因，一方面是因为计算机的计算性能的提高可以训练很大很深的网络。另一方面，大量的标签数据也让深度学习的表现越来越好。
 
@@ -82,9 +72,7 @@ want $\hat{y}^{(i)} \approx y^{(i)}$
 1. $L(\hat{y}^{(i)},y^{(i)})=\cfrac{1}{2}(\hat{y}^{(i)}-y^{(i)})^2$, non-convex
 2. $L(\hat{y}^{(i)},y^{(i)})=-(y^{(i)}\log(\hat{y}^{(i)}))+(1-y^{(i)})\log(1-\hat{y}^{(i)})$, convex is better √
 
-So, $J(w,b)=\cfrac{1}{m}\sum^m_{i=1}L(\hat{y}^{(i)},y^{(i)})$
-
-$=-\cfrac{1}{m}\sum^m_{i=1}[-(y^{(i)}\log(\hat{y}^{(i)}))+(1-y^{(i)})\log(1-\hat{y}^{(i)})]$
+ $$J(w,b)=\cfrac{1}{m}\sum^m\_{i=1}L(\hat{y}^{(i)},y^{(i)})=-\cfrac{1}{m}\sum^m\_{i=1}[-(y^{(i)}\log(\hat{y}^{(i)}))+(1-y^{(i)})\log(1-\hat{y}^{(i)})]$$
 
 **Gradient Descent**:
 
@@ -135,9 +123,9 @@ b := b - alpha*db
 
 #### Chain Rule
 
-用链式法则进行求导运算，比如两层神经网络，隐含层只有一个节点，第一层的权重W[1]第一个输入特征的权重导数：
+用链式法则进行求导运算，比如两层神经网络，隐含层只有一个节点，第一层的权重 $W^{[1]}$ 第一个输入特征的权重导数：
 
- $dW^{[1]}_{1}=\cfrac{dL(a^{[2]},y)}{da^{[2]}}\cfrac{da^{[2]}}{dz^{[2]}}\cfrac{dz^{[2]}}{da^{[1]}}\cfrac{da^{[1]}}{dz^{[1]}}\cfrac{dz^{[1]}}{dx^{[1]}}$
+ $$dW^{[1]}_{1}=\cfrac{dL(a^{[2]},y)}{da^{[2]}}\cfrac{da^{[2]}}{dz^{[2]}}\cfrac{dz^{[2]}}{da^{[1]}}\cfrac{da^{[1]}}{dz^{[1]}}\cfrac{dz^{[1]}}{dx^{[1]}}$$
 
 #### Activation Function
 
@@ -145,7 +133,7 @@ b := b - alpha*db
 
 **Tanh**: $g(z) = \cfrac{e^z-e^{-z}}{e^z+e^{-z}}$, $g'(z)=1-(tanh(z))^2$
 
-Sigmoid 激活函数和 Tanh 激活函数共同的问题是：当 z 过大或过小时，g'(z) 将趋向于 0，这会让梯度下降算法失效。
+Sigmoid 激活函数和 Tanh 激活函数共同的问题是：当 $z$ 过大或过小时，$g'(z)$ 将趋向于 0，这会让梯度下降算法失效。
 
 **ReLU**: $g(z)=max(0,z)$
 
@@ -175,7 +163,7 @@ db[1] = (1/m)*np.sum(dZ[1], axis=1, keepdims=True)
 
 #### Random Initialization
 
-**为什么不能初始化为0或其他相同的值？**
+**为什么不能初始化为 0 或其他相同的值？**
 
 如果权重相同，那么下一层的各个节点单元的地位就同等重要，这种对称性将一直延续，不管迭代多少次都会存在。
 
@@ -215,16 +203,16 @@ dA[l-1] = W[l].TdZ[l]
 
 #### Parameters Vs. Hyperparameters
 
-**Parameters**: **W[l]**, **b[l]**, l = 1,2,3...n
+**Parameters**: $W^{[l]},b^{[l]},l = 1,2,3,...,n$
 
 **Hyperparameters**:
 
-- Learning Rate **alpha**
+- Learning Rate $\alpha$
 - num of iterations **epochs**
-- num of hidden layer **L**
-- num of hidden units, **n[1]**, **n[2]**,...
-- choice of activation function **g[1]**, **g[2]**,...
-- momentum **beta**
+- num of hidden layer $L$
+- num of hidden units, $n^{[1]},n^{[2]},...$
+- choice of activation function $g^{[1]},g^{[2]},...$
+- momentum $\beta$
 - mini-batch **bacth_size**
-- regularization **lambda**
+- regularization $\lambda$
 - ...

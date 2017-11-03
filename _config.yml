@@ -3,11 +3,11 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Day
-subtitle:
-description: How You Doing?
-author: Dennis Day
-language: zh-Hans
+title: "Day's blog"
+subtitle: " GET HANDS DIRTY AND MAKE IT PRETTY."
+description:
+author: Day
+language: zh-CN # for maupassant
 timezone:
 
 # URL
@@ -40,8 +40,9 @@ future: true
 highlight:
   enable: true
   line_number: true
-  auto_detect: false
+  auto_detect: true
   tab_replace:
+mathjax: true  # for maupassant
 
 # Home page setting
 # path: Root path for your blogs index page. (default = '')
@@ -72,7 +73,8 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: next
+# theme: next
+theme: maupassant
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html

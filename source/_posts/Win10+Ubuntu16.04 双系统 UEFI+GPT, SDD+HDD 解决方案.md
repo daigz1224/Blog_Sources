@@ -1,36 +1,35 @@
 ---
-title: 'Win10+Ubuntu16.04双系统(UEFI+GPT, SDD+HDD)解决方案'
+title: Win10+Ubuntu16.04 双系统 UEFI+GPT, SDD+HDD 解决方案
 date: 2017-09-14 22:42:28
 tags:
 - Ubuntu
 - Windows
 categories: Linux
+toc: true
 ---
 本文的目标是在 SSD 中安装 Win10，并分出 20 G 用来放 Ubuntu 的系统， HDD 中分出 80 G 给 Ubuntu 的日常文件使用， Ubuntu 直接使用 Win10 的 efi 分区启动。
  <!-- more -->
 大家好，我是 Day , 昨天再次给自己的电脑装了双系统之后就想整理一下流程留待以后参考，省得自己重复折腾。关于双系统的安装网上很多资料都很老了，很多时候在不知道你的电脑是不是 Legacy Bios 的时候就推荐用 EasyBCD 什么的修改引导，还有硬盘 HDD 与固态 SSD 的分区表是传统的 MBR 还是新的 GPT 等，都需要确认一下，第二个系统 Ubuntu 在安装的时候，怎样分区比较好，怎样使用引导比较好，这些都要根据自己的情况量身定制。
 
--------------------
-
 ## 一些概念
 
 - **Legacy Bios 和 UEFI ?**
-具体细节不用考虑，只需要知道 Legacy Bios 是传统的 Bios，后来被 EFI 取代，再后来更名为 UEFI。近几年的电脑一般都支持 UEFI 引导。
+  具体细节不用考虑，只需要知道 Legacy Bios 是传统的 Bios，后来被 EFI 取代，再后来更名为 UEFI。近几年的电脑一般都支持 UEFI 引导。
 
 - **如何查看自己的电脑是否支持 UEFI？**
-快捷键 Win + R，输入 msinfo32，右边可以看到 Bios 模式。
+  快捷键 Win + R，输入 msinfo32，右边可以看到 Bios 模式。
 
 - **MBR 和 GPT ?**
-硬盘分区表，随着磁盘容量越来越大，传统的 MBR 已经不能满足大容量磁盘的需求了。GPT 意为 GUID
- 分区表，这是一个正逐渐取代 MBR 的新标准。GPT 必须使用 UEFI 的主板引导。
+  硬盘分区表，随着磁盘容量越来越大，传统的 MBR 已经不能满足大容量磁盘的需求了。GPT 意为 GUID
+   分区表，这是一个正逐渐取代 MBR 的新标准。GPT 必须使用 UEFI 的主板引导。
 
 - **如何查看自己的硬盘是否为 GPT？**
-右键开始图标，进入磁盘管理，右键磁盘（SSD 和 HDD 都看一下），查看属性。
+  右键开始图标，进入磁盘管理，右键磁盘（SSD 和 HDD 都看一下），查看属性。
 
 - **如何将自己的 MBR 动态磁盘转换为 GPT 磁盘？**
-刚才在磁盘管理里右键磁盘的时候有转换成 GPT 磁盘的选项；
-重装系统时可以用 Shift + F10 调出 CMD 命令行，使用 [DiskPart](https://technet.microsoft.com/zh-cn/library/cc766465(v=ws.10).aspx) 工具可以进行转换。
-**注意**：分区表转换有风险，为了确保安全建议用户将分区表和硬盘数据备份。*
+  刚才在磁盘管理里右键磁盘的时候有转换成 GPT 磁盘的选项；
+  重装系统时可以用 Shift + F10 调出 CMD 命令行，使用 [DiskPart](https://technet.microsoft.com/zh-cn/library/cc766465(v=ws.10).aspx) 工具可以进行转换。
+  **注意**：分区表转换有风险，为了确保安全建议用户将分区表和硬盘数据备份。*
 
 总而言之，**UEFI + GPT 是最好的方案**，重装系统的时候最好将自己的主板和硬盘转换成 UEFI + GPT.
 
@@ -54,7 +53,7 @@ categories: Linux
 6. 到 Installation type（安装类型）的时候选择最后一个 Something else，手动分区。
 7. 将 SSD 的 20 G （即 sda 里的 free space 全部分给根目录，即 Ext4 jopurnaling file system，Mount point 设为 “ / ”。
 8. 将 HDD 上的 free space，把 两倍于内存的空间 分给 swap 交换分区（休眠时会把内存中内容
- dump 到交换分区中），我的内存 16 G，考虑到可能会使用大内存，故将 32 G （32768 MB） Use as swap。
+   dump 到交换分区中），我的内存 16 G，考虑到可能会使用大内存，故将 32 G （32768 MB） Use as swap。
 9. HDD 上剩余的 free space 全部分给 /home，即 Ext4 jopurnaling file system， Mount point 设为 “ /home ”。
 10. **重要：**下面的 Device for boot loader installation 选择 Windows Boot Manager，即与windows共用一个 efi 分区，故不需要 /boot。
 11. Install Now！

@@ -1,11 +1,12 @@
 ---
-title: Ubuntu初始配置以及简洁优雅美化指南
+title: Ubuntu 初始配置以及简洁优雅美化指南
 tags:
   - Linux
   - Ubuntu
 date: 2017-09-26 16:41:58
 categories:
   - Linux
+toc: true
 ---
 
 本文的目标是在整理一下安装 Ubuntu16.04 后的必要操作，包括一些必要的配置，删除不用的软件，安装比较美观的主题，以及和基本使用的软件。
@@ -13,8 +14,6 @@ categories:
 <!--more-->
 
 大家好，我是 Day。最近的文章都可以在我的个人博客看到，一些更新和纠正也会在博客上同，欢迎大家把我的博客添加到收藏夹，我也会得到督促和认可~最近买了个域名，直接浏览器输入 dday.top 就可访问我的个人博客了，欢迎来玩~
-
-**本文的目标是在整理一下安装 Ubuntu16.04 后的必要操作，包括一些必要的配置，删除不用的软件，安装比较美观的主题，以及和基本使用的软件。**
 
 ![桌面截图.png](http://upload-images.jianshu.io/upload_images/4086548-419ea594ac4d8256.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 

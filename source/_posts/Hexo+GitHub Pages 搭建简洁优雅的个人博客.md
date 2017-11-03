@@ -1,10 +1,11 @@
 ---
-title: 'Hexo+GitHub Pages搭建简洁优雅的个人博客'
+title: Hexo+GitHub Pages 搭建简洁优雅的个人博客
 date: 2017-09-18 14:57:11
 tags:
 - GitHub
 - Hexo
 categories: Hexo
+toc: true
 ---
 
 本文的目标是使用 Hexo 搭建一个自己的博客，并配上非常优雅的 NexT 主题，并把博客托管到 GitHub 上，实现传说中的第三阶段。
@@ -19,10 +20,6 @@ categories: Hexo
 
 > 第三阶段，觉得独立博客的管理太麻烦，最好在保留控制权的前提下，让别人来管，自己只负责写文章。
 >
-
-**本文的目标是使用 Hexo 搭建一个自己的博客，并配上非常优雅的 NexT 主题，并把博客托管到 GitHub 上，实现传说中的第三阶段。**
-
-------
 
 ## 【几个概念】
 
