@@ -1,5 +1,5 @@
 ---
-title: Ubuntu 下 pytorch 的环境配置.md
+title: Ubuntu 下 pytorch 的环境配置
 tags:
   - PyTorch
   - Ubuntu
