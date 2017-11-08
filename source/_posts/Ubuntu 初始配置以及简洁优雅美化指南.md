@@ -57,7 +57,7 @@ sudo apt remove unity-webapps-common  # 删除 Amazon 链接
 sudo apt remove thunderbird totem rhythmbox empathy brasero
 sudo apt remove simple-scan gnome-mahjongg aisleriot
 sudo apt remove gnome-mines cheese transmission-common gnome-orca webbrowser-app
-sudo apt webbrowser-app gnome-sudoku  landscape-client-ui-install
+sudo apt remove webbrowser-app gnome-sudoku  landscape-client-ui-install
 sudo apt remove onboard deja-dup
 ```
 
