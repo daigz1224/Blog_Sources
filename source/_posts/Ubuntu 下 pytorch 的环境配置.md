@@ -102,7 +102,7 @@ pip install -r requirements.txt
 python -m visdom.server
 ```
 
- 需要下载的的 js 文件可能打不开，导致 connection timed out。打开 <localhost:8097> 也是一片虚无。
+ 需要下载的的 js 文件可能打不开，导致 connection timed out。打开 localhost:8097 也是一片虚无。
 
 当启用 visdom 时需要下载的文件和存放位置：
 
