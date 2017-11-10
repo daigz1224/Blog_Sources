@@ -93,3 +93,62 @@ pip install -r requirements.txt
 ```
 
 工具介绍参考 [fire repo](https://github.com/google/python-fire), [tnt repo](https://github.com/pytorch/tnt), [visdom](https://github.com/facebookresearch/visdom) etc.
+
+附录：visdom
+
+由于众所周知的原因，当你启用 visdom: 
+
+```
+python -m visdom.server
+```
+
+ 需要下载的的 js 文件可能打不开，导致 connection timed out。打开 <localhost:8097> 也是一片虚无。
+
+当启用 visdom 时需要下载的文件和存放位置：
+
+```
+download from https://unpkg.com/jquery@3.1.1/dist/jquery.min.js 
+   and put at visdom/static/js/jquery.min.js
+download from https://unpkg.com/bootstrap@3.3.7/dist/js/bootstrap.min.js 
+   and put at visdom/static/js/bootstrap.min.js
+download from https://unpkg.com/react-resizable@1.4.6/css/styles.css 
+   and put at visdom/static/css/react-resizable-styles.css
+download from https://unpkg.com/react-grid-layout@0.14.0/css/styles.css
+   and put at visdom/static/css/react-grid-layout-styles.css
+download from https://unpkg.com/react@15.6.1/dist/react.min.js
+   and put at visdom/static/js/react-react.min.js
+download from https://unpkg.com/react-dom@15.6.1/dist/react-dom.min.js 
+   and put at visdom/static/js/react-dom.min.js
+download from https://unpkg.com/classnames@2.2.5 
+   and put at visdom/static/fonts/classnames
+download from https://unpkg.com/layout-bin-packer@1.2.2 
+   and put at visdom/static/fonts/layout_bin_packer
+download from https://cdn.rawgit.com/STRML/react-grid-layout/0.14.0/dist/react-grid-layout.min.js 
+   and put at visdom/static/js/react-grid-layout.min.js
+download from https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_SVG 
+   and put at visdom/static/js/mathjax-MathJax.js
+download from https://cdn.rawgit.com/plotly/plotly.js/master/dist/plotly.min.js 
+   and put at visdom/static/js/plotly-plotly.min.js
+download from https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css 
+   and put at visdom/static/css/bootstrap.min.css
+download from https://unpkg.com/bootstrap@3.3.7/dist/fonts/glyphicons-halflings-regular.eot 
+   and put at visdom/static/fonts/glyphicons-halflings-regular.eot
+download from https://unpkg.com/bootstrap@3.3.7/dist/fonts/glyphicons-halflings-regular.eot?#iefix 
+   and put at visdom/static/fonts/glyphicons-halflings-regular.eot?#iefix
+download from https://unpkg.com/bootstrap@3.3.7/dist/fonts/glyphicons-halflings-regular.woff2 
+   and put at visdom/static/fonts/glyphicons-halflings-regular.woff2
+download from https://unpkg.com/bootstrap@3.3.7/dist/fonts/glyphicons-halflings-regular.woff 
+   and put at visdom/static/fonts/glyphicons-halflings-regular.woff
+download from https://unpkg.com/bootstrap@3.3.7/dist/fonts/glyphicons-halflings-regular.ttf 
+   and put at visdom/static/fonts/glyphicons-halflings-regular.ttf
+download from https://unpkg.com/bootstrap@3.3.7/dist/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular 
+   and put at visdom/static/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular
+```
+
+目前发现主要两个文件需要自己下载存放：[react-grid-layout.min.js](https://cdn.rawgit.com/STRML/react-grid-layout/0.14.0/dist/react-grid-layout.min.js)  和 [plotly-plotly.min.js](https://cdn.rawgit.com/plotly/plotly.js/master/dist/plotly.min.js )
+
+将这两个文件翻墙下载下来放到 `visdom/static/js/` 中即可。翻不了墙的可以通过百度云下载：
+
+链接: https://pan.baidu.com/s/1bo25jrD 
+
+密码: 8uct

@@ -54,11 +54,9 @@ sudo apt remove libreoffice-common  # 卸载 LibreOffice
 sudo apt remove unity-webapps-common  # 删除 Amazon 链接
 
 #删除不常用的软件
-sudo apt remove thunderbird totem rhythmbox empathy brasero
-sudo apt remove simple-scan gnome-mahjongg aisleriot
+sudo apt remove thunderbird totem rhythmbox empathy brasero simple-scan gnome-mahjongg aisleriot
 sudo apt remove gnome-mines cheese transmission-common gnome-orca webbrowser-app
-sudo apt remove webbrowser-app gnome-sudoku  landscape-client-ui-install
-sudo apt remove onboard deja-dup
+sudo apt remove webbrowser-app gnome-sudoku  landscape-client-ui-install onboard deja-dup
 ```
 
 ## 安装新主题
@@ -74,6 +72,8 @@ unity-tweak-tool  # 打开图形化管理工具，在 Theme 和 Icons 里应用�
 ```
 
 ## 美化终端
+
+*你需要知道你在做什么再执行命令*
 
 ```shell
 sudo apt install zsh  # 安装 zsh
@@ -92,15 +92,13 @@ sudo gedit /etc/passwd  # 修改最后一行，将 sh 改为 zsh
 
 搜索 "sougou linux"，在搜狗官网点击下载对应版本的 deb 文件，浏览器会提示要不要保存，记得 Keep。
 
-
-
 打开系统设置，找到 Language Support。Ubuntu 是英文版安装的话这里需要先安装下中文语言，在 Install/Remove Languages 找到 Chinese(simplified)，右边打勾，点击 Apply。
 
 ```shell
 cd Downloads
 sudo dpkg -i sogoupinyin_***.deb  # 使用 dpkg 安装
 # 会遇到错误，是缺少依赖的问题，使用下面命令自动安装缺少的依赖
-sudo apt -f instalsudo dpkg -i sogoupinyin_***.deb  # 使用 dpkg 安装l
+sudo apt -f install
 sudo dpkg -i sogoupinyin_***.deb  # 再次使用 dpkg 安装
 ```
 
