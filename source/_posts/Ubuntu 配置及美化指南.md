@@ -1,5 +1,5 @@
 ---
-title: Ubuntu 初始配置以及简洁优雅美化指南
+title: Ubuntu 配置及美化指南
 tags:
   - Linux
   - Ubuntu

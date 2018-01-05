@@ -1,5 +1,5 @@
 ---
-title: Hexo+GitHub Pages 搭建简洁优雅的个人博客
+title: Hexo+GitHub Pages 搭建个人博客
 date: 2017-09-18 14:57:11
 tags:
 - GitHub
