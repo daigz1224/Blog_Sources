@@ -1,5 +1,5 @@
 ---
-title: AndrewNg - Deep Learning (1)
+title: AndrewNg 深度学习笔记（一）
 tags:
   - Andrew Ng
   - Deep Learning

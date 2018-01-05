@@ -1,17 +1,17 @@
 ---
-title: Ubuntu 下 pytorch 的环境配置
+title: Ubuntu 下 PyTorch 的环境配置
 tags:
   - PyTorch
   - Ubuntu
 categories:
-  - Ubuntu
   - PyTorch
+  - Ubuntu
 mathjax: false
 toc: true
-date: 2017-11-08 21:07:01
+date: 2017-11-07 13:21:14
 ---
 
-从 Ubuntu16.04.3 的安装到 shadowsocks-qt5, Anaconda, pytorch, torchvision, visdom, fire 等软件的安装和简单配置。
+从 Ubuntu16.04.3 的安装到 Shadowsocks-qt5, Anaconda, PyTorch, TorchVision, Visdom, Fire 等软件的安装和简单配置。
 
 <!--more-->
 
@@ -63,11 +63,11 @@ source deactivate  # 离开
 
 
 
-## 安装 pytorch, torchvison
+## 安装 PyTorch, TorchVison
 
 参考 [官网](http://pytorch.org/) 
 
-建议选择 conda 路线，因为国内下载 pytorch 太慢，所以要打开代理。
+建议选择 conda 路线，因为国内下载 PyTorch 太慢，所以要打开代理。
 
 如果没有代理，到 GitHub 上参考作者的 [文档](https://github.com/pytorch/pytorch#from-source) 。
 
@@ -94,9 +94,9 @@ pip install -r requirements.txt
 
 工具介绍参考 [fire repo](https://github.com/google/python-fire), [tnt repo](https://github.com/pytorch/tnt), [visdom](https://github.com/facebookresearch/visdom) etc.
 
-附录：visdom
+附录：Visdom
 
-由于众所周知的原因，当你启用 visdom: 
+由于众所周知的原因，当你启用 Visdom: 
 
 ```
 python -m visdom.server
@@ -104,7 +104,7 @@ python -m visdom.server
 
  需要下载的的 js 文件可能打不开，导致 connection timed out。打开 localhost:8097 也是一片虚无。
 
-当启用 visdom 时需要下载的文件和存放位置：
+当启用 Visdom 时需要下载的文件和存放位置：
 
 ```
 download from https://unpkg.com/jquery@3.1.1/dist/jquery.min.js 
