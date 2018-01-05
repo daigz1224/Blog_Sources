@@ -3,9 +3,12 @@ title: Hexo+NexT 优化部署、个性化配置、主题美化流程
 tags:
   - Hexo
   - NexT
-date: 2017-09-19 12:34:33
-categories: Hexo
+  - GitHub
+categories:
+  - Hexo
+mathjax: false
 toc: true
+date: 2017-09-19 12:34:33
 ---
 
 本文实现的目标是在 Hexo 的博客搭建之后，对于优化部署，源代码托管，域名绑定，搜索引擎优化，个性化配置及主题美化的一些操作。

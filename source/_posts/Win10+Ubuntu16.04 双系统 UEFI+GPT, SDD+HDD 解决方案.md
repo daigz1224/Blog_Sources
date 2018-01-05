@@ -1,11 +1,13 @@
 ---
 title: Win10+Ubuntu16.04 双系统 UEFI+GPT, SDD+HDD 解决方案
-date: 2017-09-14 22:42:28
 tags:
-- Ubuntu
-- Windows
-categories: Linux
+  - Ubuntu
+  - Windows
+categories:
+  - Linux
+mathjax: false
 toc: true
+date: 2017-09-14 22:42:28
 ---
 本文的目标是在 SSD 中安装 Win10，并分出 20 G 用来放 Ubuntu 的系统， HDD 中分出 80 G 给 Ubuntu 的日常文件使用， Ubuntu 直接使用 Win10 的 efi 分区启动。
  <!-- more -->

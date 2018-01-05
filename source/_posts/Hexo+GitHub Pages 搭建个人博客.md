@@ -1,11 +1,13 @@
 ---
 title: Hexo+GitHub Pages 搭建个人博客
-date: 2017-09-18 14:57:11
 tags:
-- GitHub
-- Hexo
-categories: Hexo
+  - GitHub
+  - Hexo
+categories: 
+  - Hexo
+mathjax: false
 toc: true
+date: 2017-09-18 14:57:11
 ---
 
 本文的目标是使用 Hexo 搭建一个自己的博客，并配上非常优雅的 NexT 主题，并把博客托管到 GitHub 上，实现传说中的第三阶段。

@@ -1,17 +1,17 @@
 ---
 title: AWS 上使用 MXNet 的环境配置
 tags:
-  - Ubuntu
+  - AWS
   - MXNet
+  - Ubuntu
 categories:
-  - Ubuntu
-  - MXNet
+  - Linux 
 mathjax: false
 toc: true
 date: 2017-12-13 16:10:09
 ---
 
-简单记录下 AWS 竞价实例的使用，CUDA, Miniconda, MXNet 以及配置 gluon 虚拟环境。
+简单记录下 AWS 竞价实例的使用，CUDA，Miniconda，MXNet 以及配置 gluon 虚拟环境。
 
 <!--more-->
 

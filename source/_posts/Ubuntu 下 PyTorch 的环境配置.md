@@ -4,8 +4,7 @@ tags:
   - PyTorch
   - Ubuntu
 categories:
-  - PyTorch
-  - Ubuntu
+  - Linux
 mathjax: false
 toc: true
 date: 2017-11-07 13:21:14

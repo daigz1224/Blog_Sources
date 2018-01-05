@@ -3,10 +3,11 @@ title: Ubuntu 配置及美化指南
 tags:
   - Linux
   - Ubuntu
-date: 2017-09-26 16:41:58
 categories:
   - Linux
+mathjax: false
 toc: true
+date: 2017-09-26 16:41:58
 ---
 
 本文的目标是在整理一下安装 Ubuntu16.04 后的必要操作，包括一些必要的配置，删除不用的软件，安装比较美观的主题，以及和基本使用的软件。

@@ -1,11 +1,10 @@
 ---
 title: AI Challenger 场景分类
 tags:
-  - PyToch
-  - Competition
-categories:
   - PyTorch
-  - Competition
+  - 竞赛
+categories:
+  - 项目整理
 mathjax: true
 toc: true
 date: 2017-11-15 13:25:12
