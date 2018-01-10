@@ -354,7 +354,7 @@ def train(net, train_data, valid_data, num_epochs, lr, wd, ctx, lr_period, lr_de
 | learning_rate |                   0.1                    |
 | weight_decay  |                   1e-4                   |
 |   lr_period   |                   120                    |
-|   lr_decay    |              lr_decay = 0.1              |
+|   lr_decay    |                   0.1                    |
 
 - ResNet-164-V2 网络模型最终达到 95.27%，Leaderboard 成绩第二（榜单已不再更新）。
 
